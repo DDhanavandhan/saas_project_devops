@@ -1,22 +1,21 @@
-'use client';
-
-import React from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
+import { useRef, useState } from 'react';
 
-interface PresentationSceneProps {
+interface SceneProps {
   description: string;
 }
 
-export default function PresentationScene({ description }: PresentationSceneProps) {
-  const [rotation, setRotation] = React.useState(0);
+export default function Scene({ description }: SceneProps) {
+  const groupRef = useRef<THREE.Group>(null);
+  const [rotation, setRotation] = useState(0);
 
   useFrame((state, delta) => {
     setRotation((prev) => prev + delta * 0.5);
   });
 
   return (
-    <group rotation={[0, rotation, 0]}>
+    <group ref={groupRef} rotation={[0, rotation, 0]}>
       <mesh>
         <boxGeometry args={[1, 1, 1]} />
       </mesh>
