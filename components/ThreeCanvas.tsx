@@ -12,7 +12,7 @@ interface ThreeCanvasProps {
 
 // Dynamically import Three.js components to avoid SSR issues
 const ThreeCanvasComponent = dynamic(
-  () => import('./ThreeCanvasComponent').then((mod) => mod.default),
+  () => import('./PresentationScene'),
   { ssr: false }
 );
 
